@@ -15,7 +15,7 @@ let minutes = String(currentDate.getMinutes()).padStart(2, "0");
 
 time.innerHTML = `${day} ${hours}:${minutes}`;
 
-function displayForecast() {
+function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -41,6 +41,12 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function getForecast(coordinates) {
+  let apiKey = "2b6fdad0cbd018949c50c70f72250726";
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiURL).then(displayForecast);
+}
+
 function displayWeather(response) {
   let location = document.querySelector("#current-city");
   let tempElement = document.querySelector("#temperature");
@@ -60,6 +66,8 @@ function displayWeather(response) {
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function search(city) {
@@ -103,4 +111,3 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemp);
 
 search("Ankeny");
-displayForecast();
