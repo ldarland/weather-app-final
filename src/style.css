@@ -3,8 +3,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-h1,
-h3 {
+h1 {
   font-family: "Neuton", serif;
 }
 
@@ -20,9 +19,7 @@ h1 {
 h2 {
   font-size: 20px;
 }
-h3 {
-  font-size: 20px;
-}
+
 h4 {
   font-size: 12px;
   padding-top: 10px;
@@ -81,4 +78,20 @@ a {
 
 .current-temp .active:hover {
   text-decoration: none;
+}
+
+.upcoming-date {
+  font-family: "Neuton", serif;
+  font-size: 18px;
+}
+
+.upcoming-temperature-max {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.upcoming-temperature-min {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
 }
