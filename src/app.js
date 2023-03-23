@@ -15,6 +15,32 @@ let minutes = String(currentDate.getMinutes()).padStart(2, "0");
 
 time.innerHTML = `${day} ${hours}:${minutes}`;
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tues"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    
+      <div class="col-2" align="center">
+        <div class="upcoming-date">${day}</div>
+        <img src="images/Sunny.png" width="45px" alt="sun" />
+        <div class="upcoming-temperatures">
+          <span class="upcoming-temperature-max"> 49°</span>
+          <span class="upcoming-temperature-min"> 22°</span>
+        </div>
+      </div>
+    
+    `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayWeather(response) {
   let location = document.querySelector("#current-city");
   let tempElement = document.querySelector("#temperature");
@@ -77,3 +103,4 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemp);
 
 search("Ankeny");
+displayForecast();
