@@ -12,6 +12,8 @@ let days = [
 let day = days[currentDate.getDay()];
 let hours = currentDate.getHours();
 let minutes = String(currentDate.getMinutes()).padStart(2, "0");
+var AmOrPm = hours >= 12 ? "pm" : "am";
+hours = hours % 12 || 12;
 
 time.innerHTML = `${day} ${hours}:${minutes}`;
 
@@ -59,7 +61,7 @@ function displayForecast(response) {
 
 function getForecast(coordinates) {
   let apiKey = "2b6fdad0cbd018949c50c70f72250726";
-  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   axios.get(apiURL).then(displayForecast);
 }
 
@@ -76,6 +78,7 @@ function displayWeather(response) {
   tempElement.innerHTML = Math.round(celsiusTemp);
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
+  console.log(response.data);
   descriptionElement.innerHTML = response.data.weather[0].description;
   iconElement.setAttribute(
     "src",
@@ -88,7 +91,7 @@ function displayWeather(response) {
 
 function search(city) {
   let apiKey = "2b6fdad0cbd018949c50c70f72250726";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayWeather);
 }
 
@@ -97,33 +100,7 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
-
-function displayFahrenheitTemp(event) {
-  event.preventDefault();
-  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let tempElement = document.querySelector("#temperature");
-  tempElement.innerHTML = Math.round(fahrenheitTemp);
-}
-
-function displayCelsiusTemp(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let tempElement = document.querySelector("#temperature");
-  tempElement.innerHTML = Math.round(celsiusTemp);
-}
-
-let celsiusTemp = null;
-
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemp);
 
 search("Ankeny");
