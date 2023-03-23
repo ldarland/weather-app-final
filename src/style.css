@@ -1,0 +1,84 @@
+body {
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+h1,
+h3 {
+  font-family: "Neuton", serif;
+}
+
+h2,
+h4,
+h5 {
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+}
+h2 {
+  font-size: 20px;
+}
+h3 {
+  font-size: 20px;
+}
+h4 {
+  font-size: 12px;
+  padding-top: 10px;
+}
+h5 {
+  font-size: 15px;
+}
+
+#description {
+  text-transform: capitalize;
+}
+
+footer {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.units {
+  font-size: 15px;
+  position: relative;
+  top: -20px;
+}
+.search-input {
+  border-radius: 30px;
+  border-color: #4d8eff;
+}
+.btn-outline-search {
+  border-color: #4d8eff;
+  background: white;
+  padding: 5px 30px;
+  border-radius: 30px;
+  transition: all 200ms ease-in-out;
+  color: #4d8eff;
+}
+.btn-outline-search:hover {
+  background: #4d8eff;
+  border-color: #4d8eff;
+  color: white;
+}
+.weather-widget {
+  align-items: center;
+  margin: 100px;
+  padding: 60px;
+
+  background-color: rgba(255, 255, 255, 0.678);
+  border-radius: 30px;
+}
+
+.current-temp .active {
+  color: black;
+  cursor: default;
+}
+
+.current-temp .active:hover {
+  text-decoration: none;
+}
