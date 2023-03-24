@@ -9,13 +9,15 @@ let days = [
   "Friday",
   "Saturday",
 ];
+
 let day = days[currentDate.getDay()];
 let hours = currentDate.getHours();
-let minutes = String(currentDate.getMinutes()).padStart(2, "0");
-var AmOrPm = hours >= 12 ? "pm" : "am";
+let amOrPm = hours >= 12 ? "pm" : "am";
 hours = hours % 12 || 12;
 
-time.innerHTML = `${day} ${hours}:${minutes}`;
+let minutes = String(currentDate.getMinutes()).padStart(2, "0");
+
+time.innerHTML = `${day} ${hours}:${minutes} ${amOrPm}`;
 
 function formatForecastDay(timestamp) {
   let date = new Date(timestamp * 1000);
